@@ -7,29 +7,27 @@ const expect = chai.expect;
 
 chai.use(chaiAsPromised);
 
-describe('functional - user', () => {
-  it('should fail to create a user without a firstName', async () => {
+describe('functional - user', () => 
+{
+  it('should fail to create a user without a name', async () => {
     const res = await request(app).post('/users').send({
-      lastName: 'Smith',
-      age: '16',
-      profession: 'gamer',
+      age: 16,
+      color: 'gamer',
     });
     expect(res.status).to.equal(400);
-    expect(res.body.message).to.equal('"firstName" is required');
+    expect(res.body.message).to.equal('"name" is required');
   });
 
   it('should create a user', async () => {
     const user = {
-      firstName: 'John',
-      lastName: 'Smith',
+      name: 'Smith',
       age: 16,
-      profession: 'gamer',
+      color: 'gamer',
     };
     const res = await request(app).post('/users').send(user);
     expect(res.status).to.equal(201);
-    expect(res.body.firstName).to.equal(user.firstName);
-    expect(res.body.lastName).to.equal(user.lastName);
+    expect(res.body.name).to.equal(user.name);
     expect(res.body.age).to.equal(user.age);
-    expect(res.body.profession).to.equal(user.profession);
+    expect(res.body.color).to.equal(user.color);
   });
 });
