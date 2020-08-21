@@ -2,6 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-router.use('/users', require('./users'));
+router.use('/pets', require('./users')); // exposed "/pets" path for url   
 
 module.exports = router;
